@@ -1,0 +1,7 @@
+{
+    "lr": 1e-6,
+    "x_dim": 10,
+    "embedding_dimension": 100,
+    "num_classes": 10,
+    "global_scale": 1
+}
