@@ -41,7 +41,8 @@ def train(data, model, optimizer, storage, args, params, epoch):
     
     for i in torch.arange(x.shape[0]):
         include = np.delete(np.arange(x.shape[0]), i)
-        p = get_class_probs(out_z[i,:], c[include,:], l[include], out_w[include], params)
+        # p = get_class_probs(out_z[i,:], c[include,:], l[include], out_w[include], params)
+        p = get_class_probs(out_z[i,:], c[include,:], l[include], None, params)
         loss += loss_fn(p, l[i], params)
 
     print(", loss: {}".format(loss.item()))
@@ -59,7 +60,7 @@ if __name__ == "__main__":
     params = utils.Params("params.json")
 
     model = Net(params)
-    optimizer = optim.SGD(model.parameters(), params.lr)
+    optimizer = optim.Adam(model.parameters(), params.lr)
 
     x, t = simulate_data(params)
     data = {"x": x, "target": t}

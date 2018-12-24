@@ -1,12 +1,12 @@
 {
-    "lr": 1e-1,
-    "epochs": 100,
+    "lr": 1e-2,
+    "epochs": 250,
     "num_samples": 100, 
     "x_noise": 0.05,
-    "x_dim": 5,
-    "embedding_dimension": 128,
-    "num_classes": 5,
+    "x_dim": 2,
+    "embedding_dimension": 4,
+    "num_classes": 2,
     "global_scale": 1,
     "c_update_interval": 5,
-    "use_weights": true
+    "use_weights": false
 }

@@ -17,7 +17,7 @@ class Net(nn.Module):
 
     def forward(self, x):
         x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
+        # x = F.relu(self.fc2(x))
         z = F.relu(self.fc3(x))
 
         out = {"z": z}
@@ -54,12 +54,12 @@ def get_class_probs(x, c, l, w, params):
 
     p = torch.zeros((params.num_classes,))
 
-    denominator = torch.sum(w * (torch.exp(-(x - c) / (2 * params.global_scale ** 2))))
+    denominator = torch.sum(w * (torch.exp(-((x - c)**2) / (2 * params.global_scale ** 2))))
 
     for class_i in range(params.num_classes):
         c_match = c[l==class_i,:]
         w_match = w[l==class_i,:]
-        enumerator = torch.sum(w_match * (torch.exp(-(x - c_match) / (2 * params.global_scale ** 2))))
+        enumerator = torch.sum(w_match * (torch.exp(-((x - c_match)**2) / (2 * params.global_scale ** 2))))
         p[class_i] = enumerator / denominator
 
     p += 1e-6 # for numeric stability
